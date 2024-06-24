@@ -33,10 +33,15 @@ public class PkmProductService {
         entity.setPrezzoListino(request.prezzoListino());
         entity.setUpdatePrezzo(new ArrayList<>());
 
-        var resp = entity.persist();
+        // sta parte e da testare, non e chiarissima
+        entity.persistAndFlush()
+                .onFailure(Exception.class)
+                .invoke(err -> {
+                    throw new RuntimeException(err.getMessage());
+                });
 
         log.info("SaveProduct service ended successfully");
-        //TODO: rivedere che cazzo si deve fare
-        return resp.flatMap(i -> i);
+        //TODO: rivedere che cazzo si deve fare, sto ritornando entity montata, non response
+        return Uni.createFrom().item(entity);
     }
 }

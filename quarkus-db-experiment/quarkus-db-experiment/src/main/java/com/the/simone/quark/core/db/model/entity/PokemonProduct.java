@@ -3,6 +3,7 @@ package com.the.simone.quark.core.db.model.entity;
 import com.the.simone.quark.core.db.model.internal.PriceUpdate;
 import io.quarkus.hibernate.reactive.panache.PanacheEntity;
 import io.smallrye.mutiny.Uni;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.UniqueConstraint;
 import lombok.Data;
@@ -15,7 +16,8 @@ import java.util.List;
 public class PokemonProduct extends PanacheEntity {
 
     // voglio tenere traccia dei prodotti generici (non correlati a l'acquisto effettivo, e tenere traccia del prezzo nel tempo)
-    private String nome; //TODO: deve dinvetare unico
+    @Column(unique = true)
+    private String nome;
     private Double prezzoListino;
     private String dataRilascio;
     // faccio un append alla lista ogni volta che aggiorno il prezzo nel tempo
