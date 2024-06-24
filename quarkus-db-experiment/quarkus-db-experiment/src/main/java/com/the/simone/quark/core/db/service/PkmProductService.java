@@ -23,6 +23,7 @@ public class PkmProductService {
         //checko se gia esiste un entity con stesso nome
         var pkm = PokemonProduct.findAllByName(request.nome());
 
+
         //TODO: inserire check su pkm , non ho capito come cazzo si fa al momento
 
 
