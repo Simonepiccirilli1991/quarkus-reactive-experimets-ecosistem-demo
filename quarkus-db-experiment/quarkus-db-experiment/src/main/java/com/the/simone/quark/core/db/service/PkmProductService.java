@@ -36,6 +36,7 @@ public class PkmProductService {
         var resp = entity.persist();
 
         log.info("SaveProduct service ended successfully");
+        //TODO: rivedere che cazzo si deve fare
         return resp.flatMap(i -> i);
     }
 }
