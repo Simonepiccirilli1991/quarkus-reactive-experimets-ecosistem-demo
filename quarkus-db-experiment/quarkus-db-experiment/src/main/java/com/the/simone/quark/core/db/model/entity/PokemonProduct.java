@@ -15,15 +15,15 @@ import java.util.List;
 public class PokemonProduct extends PanacheEntity {
 
     // voglio tenere traccia dei prodotti generici (non correlati a l'acquisto effettivo, e tenere traccia del prezzo nel tempo)
-    private String nome;
+    private String nome; //TODO: deve dinvetare unico
     private Double prezzoListino;
     private String dataRilascio;
     // faccio un append alla lista ogni volta che aggiorno il prezzo nel tempo
     private List<PriceUpdate> updatePrezzo;
 
     //metodo ricerca per nome, le queery le fai come metodo qui se usi il panache entity, qui stiamo a usa il ractive
-    public static Uni<List<PokemonProduct>> findAllByName(String nome){
-        return find("nome",nome).list();
+    public static Uni<PokemonProduct> findAllByName(String nome){
+        return find("nome",nome).firstResult();
     }
     // per fare una queery con piu paramas si deve fa una mappa e poi queery a cui passi mappa come sotto
     public static Uni<List<PokemonProduct>> findAllByPrice(Double start,Double end){
